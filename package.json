@@ -28,12 +28,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-github-username/towns-markdown-preview.git"
+    "url": "https://github.com/Towns30/Towns-Markdown-Preview.git"
   },
   "bugs": {
-    "url": "https://github.com/your-github-username/towns-markdown-preview/issues"
+    "url": "https://github.com/Towns30/Towns-Markdown-Preview/issues"
   },
-  "homepage": "https://github.com/your-github-username/towns-markdown-preview#readme",
+  "homepage": "https://github.com/Towns30/Towns-Markdown-Preview#readme",
   "capabilities": {
     "untrustedWorkspaces": {
       "supported": true
