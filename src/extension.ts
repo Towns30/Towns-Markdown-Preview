@@ -23,6 +23,9 @@ const taskLists = require('markdown-it-task-lists') as MarkdownItPlugin;
 type ThemeId = 'notion' | 'paper' | 'dark';
 
 const managedStyleKey = 'townsMarkdown.managedStyle';
+const themeStyleFiles = new Set(['notion.css', 'paper.css', 'dark.css']);
+
+let updatingMarkdownStyles = false;
 
 const themeItems: ReadonlyArray<vscode.QuickPickItem & { id: ThemeId }> = [
   { id: 'notion', label: 'Notion', description: 'Clean and modern' },
@@ -55,6 +58,13 @@ export function activate(context: vscode.ExtensionContext): MarkdownExtensionApi
     }),
     vscode.workspace.onDidChangeConfiguration(async (event) => {
       if (event.affectsConfiguration('townsMarkdown.theme')) {
+        await applySelectedTheme(context, false, true);
+      } else if (
+        event.affectsConfiguration('markdown.styles') &&
+        !updatingMarkdownStyles
+      ) {
+        // Settings Sync can replace markdown.styles after activation. Normalize
+        // synced paths immediately instead of waiting for the next restart.
         await applySelectedTheme(context, false, true);
       }
     }),
@@ -98,20 +108,23 @@ async function applySelectedTheme(
 
     const nextStyles = globalStyles
       .filter(
-        (style) =>
-          !isTownsThemeStyle(style, context) &&
-          !samePath(style, previouslyManagedStyle),
+        (style) => !isTownsThemeStyle(style, context, previouslyManagedStyle),
       )
       .concat(selectedStyle);
 
     if (!sameStringArray(globalStyles, nextStyles)) {
       // markdown.previewStyles is static. The built-in preview's supported
       // markdown.styles setting supplies the one dynamic, user-selected file.
-      await markdownConfiguration.update(
-        'styles',
-        nextStyles,
-        vscode.ConfigurationTarget.Global,
-      );
+      updatingMarkdownStyles = true;
+      try {
+        await markdownConfiguration.update(
+          'styles',
+          nextStyles,
+          vscode.ConfigurationTarget.Global,
+        );
+      } finally {
+        updatingMarkdownStyles = false;
+      }
     }
 
     await context.globalState.update(managedStyleKey, selectedStyle);
@@ -140,13 +153,36 @@ async function applySelectedTheme(
 function isTownsThemeStyle(
   style: string,
   context: vscode.ExtensionContext,
+  previouslyManagedStyle: string | undefined,
 ): boolean {
   const normalizedStyle = normalizePath(style);
+  const isCurrentThemeStyle = (['notion', 'paper', 'dark'] as const).some(
+    (theme) => {
+      const currentStyle = context.asAbsolutePath(
+        path.join('styles', `${theme}.css`),
+      );
+      return normalizedStyle === normalizePath(currentStyle);
+    },
+  );
 
-  return (['notion', 'paper', 'dark'] as const).some(
-    (theme) =>
-      normalizedStyle ===
-      normalizePath(context.asAbsolutePath(path.join('styles', `${theme}.css`))),
+  if (samePath(style, previouslyManagedStyle) || isCurrentThemeStyle) {
+    return true;
+  }
+
+  // Global settings can be synced between operating systems. Match an
+  // installed copy by extension id using portable separators, independent of
+  // drive letters, home directories, remote hosts, or extension versions.
+  const portableParts = style.replace(/\\/g, '/').split('/').filter(Boolean);
+  const fileName = portableParts.at(-1)?.toLowerCase();
+  const stylesDirectory = portableParts.at(-2)?.toLowerCase();
+  const extensionDirectory = portableParts.at(-3)?.toLowerCase();
+  const extensionPrefix = `${context.extension.id.toLowerCase()}-`;
+
+  return (
+    fileName !== undefined &&
+    themeStyleFiles.has(fileName) &&
+    stylesDirectory === 'styles' &&
+    extensionDirectory?.startsWith(extensionPrefix) === true
   );
 }
 
