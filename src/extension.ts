@@ -1,7 +1,13 @@
-import * as path from 'node:path';
 import * as vscode from 'vscode';
 
-interface MarkdownItLike {
+import { removeLegacyTownsStyles } from './styleMigration';
+import {
+  addThemeContainer,
+  type MarkdownItWithCore,
+  type ThemeId,
+} from './themePlugin';
+
+interface MarkdownItLike extends MarkdownItWithCore {
   use(plugin: MarkdownItPlugin, options?: TaskListOptions): MarkdownItLike;
 }
 
@@ -19,14 +25,7 @@ interface MarkdownExtensionApi {
 }
 
 const taskLists = require('markdown-it-task-lists') as MarkdownItPlugin;
-
-type ThemeId = 'notion' | 'paper' | 'dark';
-
-const managedStyleKey = 'townsMarkdown.managedStyle';
-const themeStyleFiles = new Set(['notion.css', 'paper.css', 'dark.css']);
 const legacyExtensionIds = ['replace-before-publishing.towns-markdown-preview'];
-
-let updatingMarkdownStyles = false;
 
 const themeItems: ReadonlyArray<vscode.QuickPickItem & { id: ThemeId }> = [
   { id: 'notion', label: 'Notion', description: 'Clean and modern' },
@@ -34,7 +33,21 @@ const themeItems: ReadonlyArray<vscode.QuickPickItem & { id: ThemeId }> = [
   { id: 'dark', label: 'Dark', description: 'Restrained dark theme' },
 ];
 
-export function activate(context: vscode.ExtensionContext): MarkdownExtensionApi {
+export async function activate(
+  context: vscode.ExtensionContext,
+): Promise<MarkdownExtensionApi> {
+  if (legacyExtensionIds.some((id) => vscode.extensions.getExtension(id))) {
+    void vscode.window.showWarningMessage(
+      'An old Towns Markdown Preview test build is still installed. Uninstall replace-before-publishing.towns-markdown-preview, then reload VS Code.',
+    );
+
+    return {
+      extendMarkdownIt(markdownIt) {
+        return markdownIt;
+      },
+    };
+  }
+
   context.subscriptions.push(
     vscode.commands.registerCommand('townsMarkdown.selectTheme', async () => {
       const currentTheme = getSelectedTheme();
@@ -54,27 +67,24 @@ export function activate(context: vscode.ExtensionContext): MarkdownExtensionApi
         .getConfiguration('townsMarkdown')
         .update('theme', selection.id, vscode.ConfigurationTarget.Global);
 
-      await applySelectedTheme(context, true, true);
       vscode.window.setStatusBarMessage(`Towns Markdown: ${selection.label}`, 2500);
     }),
-    vscode.workspace.onDidChangeConfiguration(async (event) => {
+    vscode.workspace.onDidChangeConfiguration((event) => {
       if (event.affectsConfiguration('townsMarkdown.theme')) {
-        await applySelectedTheme(context, false, true);
-      } else if (
-        event.affectsConfiguration('markdown.styles') &&
-        !updatingMarkdownStyles
-      ) {
-        // Settings Sync can replace markdown.styles after activation. Normalize
-        // synced paths immediately instead of waiting for the next restart.
-        await applySelectedTheme(context, false, true);
+        void refreshPreview();
+      }
+
+      if (event.affectsConfiguration('markdown.styles')) {
+        void migrateLegacyMarkdownStyles();
       }
     }),
   );
 
-  void applySelectedTheme(context, false, false);
+  await migrateLegacyMarkdownStyles();
 
   return {
     extendMarkdownIt(markdownIt) {
+      addThemeContainer(markdownIt, getSelectedTheme);
       return markdownIt.use(taskLists, { enabled: false });
     },
   };
@@ -92,117 +102,43 @@ function isThemeId(value: string): value is ThemeId {
   return value === 'notion' || value === 'paper' || value === 'dark';
 }
 
-async function applySelectedTheme(
-  context: vscode.ExtensionContext,
-  warnAboutOverrides: boolean,
-  refreshPreview: boolean,
-): Promise<void> {
+async function migrateLegacyMarkdownStyles(): Promise<void> {
   try {
     const markdownConfiguration = vscode.workspace.getConfiguration('markdown');
-    const inspection = markdownConfiguration.inspect<string[]>('styles');
-    const globalStyles = inspection?.globalValue ?? [];
-    const previouslyManagedStyle = context.globalState.get<string>(managedStyleKey);
-    const selectedTheme = getSelectedTheme();
-    const selectedStyle = context.asAbsolutePath(
-      path.join('styles', `${selectedTheme}.css`),
+    const globalStyles = markdownConfiguration.inspect<string[]>('styles')?.globalValue;
+
+    if (!globalStyles) {
+      return;
+    }
+
+    const nextStyles = removeLegacyTownsStyles(globalStyles);
+
+    if (nextStyles.length === globalStyles.length) {
+      return;
+    }
+
+    await markdownConfiguration.update(
+      'styles',
+      nextStyles.length > 0 ? nextStyles : undefined,
+      vscode.ConfigurationTarget.Global,
     );
-
-    const nextStyles = globalStyles
-      .filter(
-        (style) => !isTownsThemeStyle(style, context, previouslyManagedStyle),
-      )
-      .concat(selectedStyle);
-
-    if (!sameStringArray(globalStyles, nextStyles)) {
-      // markdown.previewStyles is static. The built-in preview's supported
-      // markdown.styles setting supplies the one dynamic, user-selected file.
-      updatingMarkdownStyles = true;
-      try {
-        await markdownConfiguration.update(
-          'styles',
-          nextStyles,
-          vscode.ConfigurationTarget.Global,
-        );
-      } finally {
-        updatingMarkdownStyles = false;
-      }
-    }
-
-    await context.globalState.update(managedStyleKey, selectedStyle);
-
-    if (
-      warnAboutOverrides &&
-      (inspection?.workspaceValue !== undefined ||
-        inspection?.workspaceFolderValue !== undefined)
-    ) {
-      void vscode.window.showWarningMessage(
-        'A workspace markdown.styles setting overrides the selected Towns Markdown theme.',
-      );
-    }
-
-    if (refreshPreview) {
-      await vscode.commands.executeCommand('markdown.preview.refresh');
-    }
   } catch (error) {
-    const message = error instanceof Error ? error.message : String(error);
-    void vscode.window.showErrorMessage(
-      `Towns Markdown could not apply the selected theme: ${message}`,
-    );
+    showError('clean up old Markdown stylesheet paths', error);
   }
 }
 
-function isTownsThemeStyle(
-  style: string,
-  context: vscode.ExtensionContext,
-  previouslyManagedStyle: string | undefined,
-): boolean {
-  const normalizedStyle = normalizePath(style);
-  const isCurrentThemeStyle = (['notion', 'paper', 'dark'] as const).some(
-    (theme) => {
-      const currentStyle = context.asAbsolutePath(
-        path.join('styles', `${theme}.css`),
-      );
-      return normalizedStyle === normalizePath(currentStyle);
-    },
-  );
-
-  if (samePath(style, previouslyManagedStyle) || isCurrentThemeStyle) {
-    return true;
+async function refreshPreview(): Promise<void> {
+  try {
+    await vscode.commands.executeCommand('markdown.preview.refresh');
+  } catch (error) {
+    showError('refresh the Markdown preview', error);
   }
-
-  // Global settings can be synced between operating systems. Match an
-  // installed copy by extension id using portable separators, independent of
-  // drive letters, home directories, remote hosts, or extension versions.
-  const portableParts = style.replace(/\\/g, '/').split('/').filter(Boolean);
-  const fileName = portableParts.at(-1)?.toLowerCase();
-  const stylesDirectory = portableParts.at(-2)?.toLowerCase();
-  const extensionDirectory = portableParts.at(-3)?.toLowerCase();
-  const extensionPrefixes = [context.extension.id, ...legacyExtensionIds].map(
-    (extensionId) => `${extensionId.toLowerCase()}-`,
-  );
-
-  return (
-    fileName !== undefined &&
-    themeStyleFiles.has(fileName) &&
-    stylesDirectory === 'styles' &&
-    extensionDirectory !== undefined &&
-    extensionPrefixes.some((prefix) => extensionDirectory.startsWith(prefix))
-  );
 }
 
-function normalizePath(value: string): string {
-  const normalized = path.normalize(value);
-  return process.platform === 'win32' ? normalized.toLowerCase() : normalized;
-}
-
-function samePath(left: string, right: string | undefined): boolean {
-  return right !== undefined && normalizePath(left) === normalizePath(right);
-}
-
-function sameStringArray(left: readonly string[], right: readonly string[]): boolean {
-  return (
-    left.length === right.length &&
-    left.every((value, index) => value === right[index])
+function showError(action: string, error: unknown): void {
+  const message = error instanceof Error ? error.message : String(error);
+  void vscode.window.showErrorMessage(
+    `Towns Markdown could not ${action}: ${message}`,
   );
 }
 

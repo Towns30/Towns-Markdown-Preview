@@ -1,4 +1,4 @@
-:root {
+:root:has(.towns-theme-dark) {
   color-scheme: dark;
   --towns-page-width: 850px;
   --towns-bg: #202226;
@@ -22,38 +22,38 @@
   --towns-syntax-title: #8eb6d3;
 }
 
-body.vscode-body {
+body.vscode-body:has(.towns-theme-dark) {
   line-height: 1.78;
 }
 
-body.vscode-body h1 {
+body.vscode-body:has(.towns-theme-dark) h1 {
   border-bottom-color: #41454c;
 }
 
-body.vscode-body a {
+body.vscode-body:has(.towns-theme-dark) a {
   text-decoration-color: #5c819c;
 }
 
-body.vscode-body blockquote {
+body.vscode-body:has(.towns-theme-dark) blockquote {
   color: #aeb4bc;
 }
 
-body.vscode-body :not(pre) > code {
+body.vscode-body:has(.towns-theme-dark) :not(pre) > code {
   color: #e2e5e9;
 }
 
-body.vscode-body pre {
+body.vscode-body:has(.towns-theme-dark) pre {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.025);
 }
 
-body.vscode-body th {
+body.vscode-body:has(.towns-theme-dark) th {
   background: #292c31;
 }
 
-body.vscode-body tr:nth-child(2n) {
+body.vscode-body:has(.towns-theme-dark) tr:nth-child(2n) {
   background: #25282d;
 }
 
-body.vscode-body img {
+body.vscode-body:has(.towns-theme-dark) img {
   opacity: 0.96;
 }

@@ -1,4 +1,4 @@
-:root {
+:root:has(.towns-theme-notion) {
   --towns-page-width: 840px;
   --towns-bg: #fdfdfc;
   --towns-text: #373a3d;
@@ -21,20 +21,20 @@
   --towns-syntax-title: #326f91;
 }
 
-body.vscode-body {
+body.vscode-body:has(.towns-theme-notion) {
   letter-spacing: 0.002em;
 }
 
-body.vscode-body h1 {
+body.vscode-body:has(.towns-theme-notion) h1 {
   border-bottom-color: transparent;
   font-size: 2.18em;
   letter-spacing: -0.025em;
 }
 
-body.vscode-body h2 {
+body.vscode-body:has(.towns-theme-notion) h2 {
   border-bottom-color: var(--towns-border);
 }
 
-body.vscode-body blockquote {
+body.vscode-body:has(.towns-theme-notion) blockquote {
   color: #61666a;
 }

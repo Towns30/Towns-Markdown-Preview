@@ -12,11 +12,11 @@
 
 ## 安装
 
-Marketplace 发布后可在 VS Code Extensions 中搜索 `Towns Markdown Preview`。开发阶段可安装项目生成的 `.vsix`：
+可在 VS Code Extensions 中搜索 `Towns Markdown Preview`。开发阶段也可安装项目生成的 `.vsix`：
 
 1. 打开命令面板。
 2. 运行 `Extensions: Install from VSIX...`。
-3. 选择 `towns-markdown-preview-0.1.1.vsix`。
+3. 选择 `towns-markdown-preview-0.1.2.vsix`。
 
 ## 使用
 
@@ -76,7 +76,7 @@ npx @vscode/vsce package
 
 本项目没有运行时依赖，`npm run package` 会使用等价的 `--no-dependencies` 选项跳过不必要的依赖扫描。
 
-输出文件为 `towns-markdown-preview-0.1.1.vsix`。
+输出文件为 `towns-markdown-preview-0.1.2.vsix`。
 
 ## Marketplace 发布前
 
@@ -89,9 +89,9 @@ npx @vscode/vsce package
 
 ## 实现说明与限制
 
-公共排版通过官方 `markdown.previewStyles` contribution 注入。由于该 contribution 是静态文件列表，当前主题文件由扩展加入全局 `markdown.styles`，并保留用户已有的全局样式条目。
+全部主题样式通过官方 `markdown.previewStyles` contribution 注入。扩展使用官方 Markdown-It 插件接口为预览内容添加当前主题标识，切换主题后请求刷新原生 Markdown Preview。
 
-如果某个工作区显式设置了 `markdown.styles`，该工作区设置会覆盖全局主题样式；移除工作区覆盖后即可恢复 Towns Markdown 主题。
+扩展不会向 `markdown.styles` 添加内容。升级时只会移除旧版本曾写入的 Towns 主题绝对路径，并保留用户自己的样式条目。用户设置的 `markdown.styles` 仍会按 VS Code 默认规则加载在扩展样式之后。
 
 ## License
 

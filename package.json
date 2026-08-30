@@ -2,7 +2,7 @@
   "name": "towns-markdown-preview",
   "displayName": "Towns Markdown Preview",
   "description": "Clean and elegant Markdown preview themes optimized for Chinese and English writing.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "towns",
   "license": "MIT",
   "engines": {
@@ -70,7 +70,10 @@
       }
     },
     "markdown.previewStyles": [
-      "./styles/base.css"
+      "./styles/base.css",
+      "./styles/notion.css",
+      "./styles/paper.css",
+      "./styles/dark.css"
     ],
     "markdown.markdownItPlugins": true
   },
@@ -78,6 +81,7 @@
     "vscode:prepublish": "npm run compile",
     "compile": "tsc --noEmit -p ./ && esbuild src/extension.ts --bundle --platform=node --format=cjs --external:vscode --sourcemap --outfile=out/extension.js",
     "watch": "esbuild src/extension.ts --bundle --platform=node --format=cjs --external:vscode --sourcemap --outfile=out/extension.js --watch",
+    "test": "esbuild test/upgrade.test.ts --bundle --platform=node --format=cjs --outfile=test/upgrade.test.cjs && node test/upgrade.test.cjs",
     "package": "vsce package --no-dependencies"
   },
   "devDependencies": {

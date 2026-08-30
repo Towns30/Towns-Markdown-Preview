@@ -1,5 +1,6 @@
 node_modules/
 out/
+test/*.cjs
 *.vsix
 *.vsix.tags
 *.log

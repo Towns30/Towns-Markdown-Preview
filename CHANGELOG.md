@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.2
+
+- Fix Markdown preview stylesheet loading after extension upgrades.
+- Stop storing version-specific extension paths in `markdown.styles`.
+- Safely remove stale Towns stylesheet paths while preserving user styles.
+
 ## 0.1.1
 
 - Clean up stale Markdown theme paths from the previous publisher ID and synced installations on other operating systems.

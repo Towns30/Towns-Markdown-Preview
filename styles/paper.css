@@ -1,4 +1,4 @@
-:root {
+:root:has(.towns-theme-paper) {
   --towns-page-width: 790px;
   --towns-bg: #f6f1e7;
   --towns-text: #3d3932;
@@ -21,41 +21,41 @@
   --towns-syntax-title: #6c563d;
 }
 
-body.vscode-body {
+body.vscode-body:has(.towns-theme-paper) {
   padding-top: 58px;
   font-size: 17px;
   line-height: 1.95;
   letter-spacing: 0.018em;
 }
 
-body.vscode-body h1,
-body.vscode-body h2,
-body.vscode-body h3 {
+body.vscode-body:has(.towns-theme-paper) h1,
+body.vscode-body:has(.towns-theme-paper) h2,
+body.vscode-body:has(.towns-theme-paper) h3 {
   font-weight: 600;
   letter-spacing: 0.015em;
 }
 
-body.vscode-body h1 {
+body.vscode-body:has(.towns-theme-paper) h1 {
   padding-bottom: 0.5em;
   font-size: 2em;
 }
 
-body.vscode-body h2 {
+body.vscode-body:has(.towns-theme-paper) h2 {
   margin-top: 2.45em;
   border-bottom-style: double;
   border-bottom-width: 3px;
   font-size: 1.48em;
 }
 
-body.vscode-body h3 {
+body.vscode-body:has(.towns-theme-paper) h3 {
   font-size: 1.2em;
 }
 
-body.vscode-body p {
+body.vscode-body:has(.towns-theme-paper) p {
   margin-bottom: 1.22em;
 }
 
-body.vscode-body blockquote {
+body.vscode-body:has(.towns-theme-paper) blockquote {
   margin: 1.8em 0;
   padding: 0.75em 1.25em 0.75em 1.35em;
   border-left-width: 2px;
@@ -64,14 +64,14 @@ body.vscode-body blockquote {
   font-size: 0.98em;
 }
 
-body.vscode-body pre,
-body.vscode-body code,
-body.vscode-body kbd,
-body.vscode-body samp,
-body.vscode-body table {
+body.vscode-body:has(.towns-theme-paper) pre,
+body.vscode-body:has(.towns-theme-paper) code,
+body.vscode-body:has(.towns-theme-paper) kbd,
+body.vscode-body:has(.towns-theme-paper) samp,
+body.vscode-body:has(.towns-theme-paper) table {
   letter-spacing: 0;
 }
 
-body.vscode-body img {
+body.vscode-body:has(.towns-theme-paper) img {
   border: 1px solid color-mix(in srgb, var(--towns-border) 75%, transparent);
 }
