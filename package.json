@@ -1,0 +1,66 @@
+{
+  "name": "towns-markdown-preview",
+  "displayName": "Towns Markdown Preview",
+  "description": "Clean and elegant Markdown preview themes optimized for Chinese and English writing.",
+  "version": "0.1.0",
+  "publisher": "replace-before-publishing",
+  "license": "MIT",
+  "engines": { "vscode": "^1.85.0" },
+  "categories": ["Other", "Themes"],
+  "keywords": ["markdown", "preview", "theme", "chinese", "notion", "paper", "dark"],
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:townsMarkdown.selectTheme"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-github-username/towns-markdown-preview.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-github-username/towns-markdown-preview/issues"
+  },
+  "homepage": "https://github.com/your-github-username/towns-markdown-preview#readme",
+  "capabilities": {
+    "untrustedWorkspaces": { "supported": true }
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "townsMarkdown.selectTheme",
+        "title": "Select Theme",
+        "category": "Towns Markdown"
+      }
+    ],
+    "configuration": {
+      "title": "Towns Markdown Preview",
+      "properties": {
+        "townsMarkdown.theme": {
+          "type": "string",
+          "enum": ["notion", "paper", "dark"],
+          "enumDescriptions": [
+            "Clean, modern layout for notes and outlines.",
+            "Warm, book-like layout for long-form reading.",
+            "Restrained dark layout for technical notes."
+          ],
+          "default": "notion",
+          "scope": "window",
+          "description": "Theme used by the built-in Markdown preview."
+        }
+      }
+    },
+    "markdown.previewStyles": ["./styles/base.css"]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package --no-dependencies"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.6.0",
+    "typescript": "^5.7.2"
+  }
+}

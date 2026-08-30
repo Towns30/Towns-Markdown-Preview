@@ -1,0 +1,77 @@
+:root {
+  --towns-page-width: 790px;
+  --towns-bg: #f6f1e7;
+  --towns-text: #3d3932;
+  --towns-text-muted: #716b61;
+  --towns-heading: #292721;
+  --towns-accent: #765b3e;
+  --towns-border: #d9d0c1;
+  --towns-soft-bg: #eee7da;
+  --towns-code-bg: #eee7da;
+  --towns-code-border: #dbd1c1;
+  --towns-quote-border: #9c866a;
+  --towns-selection: #dfd1b9;
+  --towns-mark: #e9d997;
+  --towns-font-body: var(--towns-font-serif);
+  --towns-font-heading: var(--towns-font-serif);
+  --towns-syntax-comment: #837a6d;
+  --towns-syntax-keyword: #76566b;
+  --towns-syntax-string: #5d7049;
+  --towns-syntax-number: #90613a;
+  --towns-syntax-title: #6c563d;
+}
+
+body.vscode-body {
+  padding-top: 58px;
+  font-size: 17px;
+  line-height: 1.95;
+  letter-spacing: 0.018em;
+}
+
+body.vscode-body h1,
+body.vscode-body h2,
+body.vscode-body h3 {
+  font-weight: 600;
+  letter-spacing: 0.015em;
+}
+
+body.vscode-body h1 {
+  padding-bottom: 0.5em;
+  font-size: 2em;
+}
+
+body.vscode-body h2 {
+  margin-top: 2.45em;
+  border-bottom-style: double;
+  border-bottom-width: 3px;
+  font-size: 1.48em;
+}
+
+body.vscode-body h3 {
+  font-size: 1.2em;
+}
+
+body.vscode-body p {
+  margin-bottom: 1.22em;
+}
+
+body.vscode-body blockquote {
+  margin: 1.8em 0;
+  padding: 0.75em 1.25em 0.75em 1.35em;
+  border-left-width: 2px;
+  color: #635b50;
+  background: color-mix(in srgb, var(--towns-soft-bg) 64%, transparent);
+  font-size: 0.98em;
+}
+
+body.vscode-body pre,
+body.vscode-body code,
+body.vscode-body kbd,
+body.vscode-body samp,
+body.vscode-body table {
+  letter-spacing: 0;
+}
+
+body.vscode-body img {
+  border: 1px solid color-mix(in srgb, var(--towns-border) 75%, transparent);
+}

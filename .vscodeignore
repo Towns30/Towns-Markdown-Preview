@@ -1,0 +1,11 @@
+.git/**
+.agents/**
+.codex/**
+.vscode/**
+src/**
+node_modules/**
+.gitignore
+tsconfig.json
+**/*.map
+*.vsix
+*.vsix.tags

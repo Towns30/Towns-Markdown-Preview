@@ -1,0 +1,363 @@
+:root {
+  --towns-font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Microsoft YaHei", "Noto Sans CJK SC", "Noto Sans SC", Arial, sans-serif;
+  --towns-font-serif: "Songti SC", SimSun, "Noto Serif CJK SC", "Noto Serif SC",
+    Georgia, serif;
+  --towns-font-mono: "Cascadia Code", "JetBrains Mono", "SFMono-Regular",
+    Consolas, "Liberation Mono", Menlo, monospace;
+  --towns-page-width: 840px;
+  --towns-bg: #fdfdfc;
+  --towns-text: #303438;
+  --towns-text-muted: #73777b;
+  --towns-heading: #24272a;
+  --towns-accent: #356f93;
+  --towns-border: #e5e5e2;
+  --towns-soft-bg: #f4f4f2;
+  --towns-code-bg: #f2f2f0;
+  --towns-code-border: #e5e5e2;
+  --towns-quote-border: #b8bdc1;
+  --towns-selection: #dbe9f2;
+  --towns-mark: #f4e8a8;
+  --towns-font-body: var(--towns-font-sans);
+  --towns-font-heading: var(--towns-font-sans);
+  --towns-syntax-comment: #7b8085;
+  --towns-syntax-keyword: #875a7b;
+  --towns-syntax-string: #527a3f;
+  --towns-syntax-number: #9b6128;
+  --towns-syntax-title: #356f93;
+}
+
+html {
+  background: var(--towns-bg);
+}
+
+body.vscode-body {
+  box-sizing: border-box;
+  width: calc(100% - 48px);
+  max-width: var(--towns-page-width);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 52px 20px 88px;
+  color: var(--towns-text);
+  background: var(--towns-bg);
+  font-family: var(--towns-font-body) !important;
+  font-size: 16px;
+  line-height: 1.82;
+  overflow-wrap: break-word;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.vscode-body *,
+body.vscode-body *::before,
+body.vscode-body *::after {
+  box-sizing: border-box;
+}
+
+body.vscode-body ::selection {
+  background: var(--towns-selection);
+}
+
+.markdown-body > :first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body > :last-child {
+  margin-bottom: 0 !important;
+}
+
+body.vscode-body h1,
+body.vscode-body h2,
+body.vscode-body h3,
+body.vscode-body h4,
+body.vscode-body h5,
+body.vscode-body h6 {
+  color: var(--towns-heading);
+  font-family: var(--towns-font-heading);
+  font-weight: 650;
+  line-height: 1.35;
+  letter-spacing: -0.012em;
+}
+
+body.vscode-body h1 {
+  margin: 0 0 1.25em;
+  padding-bottom: 0.42em;
+  border-bottom: 1px solid var(--towns-border);
+  font-size: 2.05em;
+}
+
+body.vscode-body h2 {
+  margin: 2.25em 0 0.85em;
+  padding-bottom: 0.32em;
+  border-bottom: 1px solid var(--towns-border);
+  font-size: 1.55em;
+}
+
+body.vscode-body h3 {
+  margin: 1.85em 0 0.72em;
+  font-size: 1.25em;
+}
+
+body.vscode-body h4,
+body.vscode-body h5,
+body.vscode-body h6 {
+  margin: 1.6em 0 0.62em;
+  font-size: 1em;
+}
+
+body.vscode-body p {
+  margin: 0 0 1.12em;
+}
+
+body.vscode-body strong {
+  color: var(--towns-heading);
+  font-weight: 650;
+}
+
+body.vscode-body em {
+  color: inherit;
+}
+
+body.vscode-body a {
+  color: var(--towns-accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+body.vscode-body a:hover {
+  text-decoration-thickness: 2px;
+}
+
+body.vscode-body ul,
+body.vscode-body ol {
+  margin: 0 0 1.15em;
+  padding-left: 1.65em;
+}
+
+body.vscode-body li {
+  margin: 0.24em 0;
+  padding-left: 0.16em;
+}
+
+body.vscode-body li > ul,
+body.vscode-body li > ol {
+  margin-top: 0.24em;
+  margin-bottom: 0.34em;
+}
+
+body.vscode-body li::marker {
+  color: var(--towns-text-muted);
+}
+
+body.vscode-body .task-list-item {
+  list-style: none;
+}
+
+body.vscode-body .task-list-item input[type="checkbox"],
+body.vscode-body input[type="checkbox"] {
+  width: 1em;
+  height: 1em;
+  margin: 0 0.55em 0 -1.45em;
+  vertical-align: -0.08em;
+  accent-color: var(--towns-accent);
+}
+
+body.vscode-body blockquote {
+  margin: 1.55em 0;
+  padding: 0.2em 0 0.2em 1.15em;
+  border-left: 3px solid var(--towns-quote-border);
+  color: var(--towns-text-muted);
+  background: transparent;
+}
+
+body.vscode-body blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+body.vscode-body code,
+body.vscode-body pre,
+body.vscode-body kbd,
+body.vscode-body samp {
+  font-family: var(--towns-font-mono) !important;
+  font-variant-ligatures: none;
+}
+
+body.vscode-body :not(pre) > code {
+  margin: 0 0.08em;
+  padding: 0.16em 0.38em;
+  border: 1px solid var(--towns-code-border);
+  border-radius: 3px;
+  color: var(--towns-heading);
+  background: var(--towns-code-bg);
+  font-size: 0.86em;
+  white-space: break-spaces;
+}
+
+body.vscode-body pre {
+  margin: 1.5em 0;
+  padding: 1.05em 1.2em;
+  border: 1px solid var(--towns-code-border);
+  border-radius: 5px;
+  background: var(--towns-code-bg);
+  font-size: 0.88em;
+  line-height: 1.68;
+  overflow: auto;
+  tab-size: 2;
+}
+
+body.vscode-body pre code {
+  padding: 0;
+  color: var(--towns-text);
+  background: transparent;
+  font-size: inherit;
+}
+
+body.vscode-body .hljs-comment,
+body.vscode-body .hljs-quote {
+  color: var(--towns-syntax-comment);
+  font-style: italic;
+}
+
+body.vscode-body .hljs-keyword,
+body.vscode-body .hljs-selector-tag,
+body.vscode-body .hljs-built_in,
+body.vscode-body .hljs-name,
+body.vscode-body .hljs-tag {
+  color: var(--towns-syntax-keyword);
+}
+
+body.vscode-body .hljs-string,
+body.vscode-body .hljs-attr,
+body.vscode-body .hljs-template-tag,
+body.vscode-body .hljs-template-variable,
+body.vscode-body .hljs-addition {
+  color: var(--towns-syntax-string);
+}
+
+body.vscode-body .hljs-number,
+body.vscode-body .hljs-literal,
+body.vscode-body .hljs-variable,
+body.vscode-body .hljs-attribute,
+body.vscode-body .hljs-symbol,
+body.vscode-body .hljs-bullet {
+  color: var(--towns-syntax-number);
+}
+
+body.vscode-body .hljs-title,
+body.vscode-body .hljs-section,
+body.vscode-body .hljs-function,
+body.vscode-body .hljs-selector-id,
+body.vscode-body .hljs-selector-class {
+  color: var(--towns-syntax-title);
+}
+
+body.vscode-body table {
+  display: table;
+  width: 100%;
+  margin: 1.5em 0;
+  border: 1px solid var(--towns-border);
+  border-collapse: collapse;
+  border-spacing: 0;
+  background: transparent;
+  font-size: 0.92em;
+  line-height: 1.6;
+  overflow: auto;
+}
+
+body.vscode-body th,
+body.vscode-body td {
+  padding: 0.62em 0.78em;
+  border: 1px solid var(--towns-border);
+  text-align: left;
+  vertical-align: top;
+}
+
+body.vscode-body th {
+  color: var(--towns-heading);
+  background: var(--towns-soft-bg);
+  font-weight: 650;
+}
+
+body.vscode-body tr:nth-child(2n) {
+  background: color-mix(in srgb, var(--towns-soft-bg) 52%, transparent);
+}
+
+body.vscode-body img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.7em auto;
+}
+
+body.vscode-body hr {
+  height: 0;
+  margin: 2.8em 0;
+  border: 0;
+  border-top: 1px solid var(--towns-border);
+}
+
+body.vscode-body mark {
+  padding: 0.05em 0.16em;
+  color: inherit;
+  background: var(--towns-mark);
+}
+
+body.vscode-body del {
+  color: var(--towns-text-muted);
+}
+
+body.vscode-body .katex {
+  color: var(--towns-text);
+  font-size: 1.02em;
+}
+
+body.vscode-body .katex-display {
+  margin: 1.55em 0;
+  padding: 0.2em 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+body.vscode-body .footnotes {
+  margin-top: 3em;
+  padding-top: 1.2em;
+  border-top: 1px solid var(--towns-border);
+  color: var(--towns-text-muted);
+  font-size: 0.9em;
+}
+
+@media (max-width: 640px) {
+  body.vscode-body {
+    width: 100%;
+    padding: 32px 22px 60px;
+    font-size: 15px;
+  }
+
+  body.vscode-body h1 {
+    font-size: 1.78em;
+  }
+
+  body.vscode-body h2 {
+    font-size: 1.4em;
+  }
+
+  body.vscode-body table {
+    display: block;
+    white-space: nowrap;
+  }
+}
+
+@media print {
+  html,
+  body.vscode-body {
+    background: #ffffff !important;
+  }
+
+  body.vscode-body {
+    width: 100%;
+    max-width: none;
+    padding: 0;
+    color: #222222 !important;
+    font-size: 11pt;
+  }
+}

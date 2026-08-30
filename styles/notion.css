@@ -1,0 +1,40 @@
+:root {
+  --towns-page-width: 840px;
+  --towns-bg: #fdfdfc;
+  --towns-text: #373a3d;
+  --towns-text-muted: #707478;
+  --towns-heading: #25282b;
+  --towns-accent: #2f6f94;
+  --towns-border: #e5e5e2;
+  --towns-soft-bg: #f4f4f2;
+  --towns-code-bg: #f2f2f0;
+  --towns-code-border: #e4e4e1;
+  --towns-quote-border: #aeb4b8;
+  --towns-selection: #dceaf2;
+  --towns-mark: #f2e8aa;
+  --towns-font-body: var(--towns-font-sans);
+  --towns-font-heading: var(--towns-font-sans);
+  --towns-syntax-comment: #85898d;
+  --towns-syntax-keyword: #825d78;
+  --towns-syntax-string: #4e7542;
+  --towns-syntax-number: #996330;
+  --towns-syntax-title: #326f91;
+}
+
+body.vscode-body {
+  letter-spacing: 0.002em;
+}
+
+body.vscode-body h1 {
+  border-bottom-color: transparent;
+  font-size: 2.18em;
+  letter-spacing: -0.025em;
+}
+
+body.vscode-body h2 {
+  border-bottom-color: var(--towns-border);
+}
+
+body.vscode-body blockquote {
+  color: #61666a;
+}
