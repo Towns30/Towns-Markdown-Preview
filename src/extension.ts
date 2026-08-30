@@ -1,6 +1,25 @@
 import * as path from 'node:path';
 import * as vscode from 'vscode';
 
+interface MarkdownItLike {
+  use(plugin: MarkdownItPlugin, options?: TaskListOptions): MarkdownItLike;
+}
+
+interface TaskListOptions {
+  enabled?: boolean;
+}
+
+type MarkdownItPlugin = (
+  markdownIt: MarkdownItLike,
+  options?: TaskListOptions,
+) => void;
+
+interface MarkdownExtensionApi {
+  extendMarkdownIt(markdownIt: MarkdownItLike): MarkdownItLike;
+}
+
+const taskLists = require('markdown-it-task-lists') as MarkdownItPlugin;
+
 type ThemeId = 'notion' | 'paper' | 'dark';
 
 const managedStyleKey = 'townsMarkdown.managedStyle';
@@ -11,7 +30,7 @@ const themeItems: ReadonlyArray<vscode.QuickPickItem & { id: ThemeId }> = [
   { id: 'dark', label: 'Dark', description: 'Restrained dark theme' },
 ];
 
-export function activate(context: vscode.ExtensionContext): void {
+export function activate(context: vscode.ExtensionContext): MarkdownExtensionApi {
   context.subscriptions.push(
     vscode.commands.registerCommand('townsMarkdown.selectTheme', async () => {
       const currentTheme = getSelectedTheme();
@@ -42,6 +61,12 @@ export function activate(context: vscode.ExtensionContext): void {
   );
 
   void applySelectedTheme(context, false, false);
+
+  return {
+    extendMarkdownIt(markdownIt) {
+      return markdownIt.use(taskLists, { enabled: false });
+    },
+  };
 }
 
 function getSelectedTheme(): ThemeId {

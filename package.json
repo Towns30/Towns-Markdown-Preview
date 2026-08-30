@@ -5,9 +5,22 @@
   "version": "0.1.0",
   "publisher": "replace-before-publishing",
   "license": "MIT",
-  "engines": { "vscode": "^1.85.0" },
-  "categories": ["Other", "Themes"],
-  "keywords": ["markdown", "preview", "theme", "chinese", "notion", "paper", "dark"],
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other",
+    "Themes"
+  ],
+  "keywords": [
+    "markdown",
+    "preview",
+    "theme",
+    "chinese",
+    "notion",
+    "paper",
+    "dark"
+  ],
   "main": "./out/extension.js",
   "activationEvents": [
     "onStartupFinished",
@@ -22,7 +35,9 @@
   },
   "homepage": "https://github.com/your-github-username/towns-markdown-preview#readme",
   "capabilities": {
-    "untrustedWorkspaces": { "supported": true }
+    "untrustedWorkspaces": {
+      "supported": true
+    }
   },
   "contributes": {
     "commands": [
@@ -37,7 +52,11 @@
       "properties": {
         "townsMarkdown.theme": {
           "type": "string",
-          "enum": ["notion", "paper", "dark"],
+          "enum": [
+            "notion",
+            "paper",
+            "dark"
+          ],
           "enumDescriptions": [
             "Clean, modern layout for notes and outlines.",
             "Warm, book-like layout for long-form reading.",
@@ -49,18 +68,25 @@
         }
       }
     },
-    "markdown.previewStyles": ["./styles/base.css"]
+    "markdown.previewStyles": [
+      "./styles/base.css"
+    ],
+    "markdown.markdownItPlugins": true
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
+    "compile": "tsc --noEmit -p ./ && esbuild src/extension.ts --bundle --platform=node --format=cjs --external:vscode --sourcemap --outfile=out/extension.js",
+    "watch": "esbuild src/extension.ts --bundle --platform=node --format=cjs --external:vscode --sourcemap --outfile=out/extension.js --watch",
     "package": "vsce package --no-dependencies"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",
     "@types/vscode": "^1.85.0",
     "@vscode/vsce": "^3.6.0",
+    "esbuild": "^0.28.2",
     "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "markdown-it-task-lists": "^2.1.1"
   }
 }
