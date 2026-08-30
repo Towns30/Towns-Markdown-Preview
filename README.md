@@ -16,7 +16,7 @@ Marketplace 发布后可在 VS Code Extensions 中搜索 `Towns Markdown Preview
 
 1. 打开命令面板。
 2. 运行 `Extensions: Install from VSIX...`。
-3. 选择 `towns-markdown-preview-0.1.0.vsix`。
+3. 选择 `towns-markdown-preview-0.1.1.vsix`。
 
 ## 使用
 
@@ -76,7 +76,7 @@ npx @vscode/vsce package
 
 本项目没有运行时依赖，`npm run package` 会使用等价的 `--no-dependencies` 选项跳过不必要的依赖扫描。
 
-输出文件为 `towns-markdown-preview-0.1.0.vsix`。
+输出文件为 `towns-markdown-preview-0.1.1.vsix`。
 
 ## Marketplace 发布前
 

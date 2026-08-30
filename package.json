@@ -2,7 +2,7 @@
   "name": "towns-markdown-preview",
   "displayName": "Towns Markdown Preview",
   "description": "Clean and elegant Markdown preview themes optimized for Chinese and English writing.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "towns",
   "license": "MIT",
   "engines": {

@@ -24,6 +24,7 @@ type ThemeId = 'notion' | 'paper' | 'dark';
 
 const managedStyleKey = 'townsMarkdown.managedStyle';
 const themeStyleFiles = new Set(['notion.css', 'paper.css', 'dark.css']);
+const legacyExtensionIds = ['replace-before-publishing.towns-markdown-preview'];
 
 let updatingMarkdownStyles = false;
 
@@ -176,13 +177,16 @@ function isTownsThemeStyle(
   const fileName = portableParts.at(-1)?.toLowerCase();
   const stylesDirectory = portableParts.at(-2)?.toLowerCase();
   const extensionDirectory = portableParts.at(-3)?.toLowerCase();
-  const extensionPrefix = `${context.extension.id.toLowerCase()}-`;
+  const extensionPrefixes = [context.extension.id, ...legacyExtensionIds].map(
+    (extensionId) => `${extensionId.toLowerCase()}-`,
+  );
 
   return (
     fileName !== undefined &&
     themeStyleFiles.has(fileName) &&
     stylesDirectory === 'styles' &&
-    extensionDirectory?.startsWith(extensionPrefix) === true
+    extensionDirectory !== undefined &&
+    extensionPrefixes.some((prefix) => extensionDirectory.startsWith(prefix))
   );
 }
 
