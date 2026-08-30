@@ -82,9 +82,9 @@ npx @vscode/vsce package
 
 发布前必须完成以下事项：
 
-- 将 `package.json` 中的 `publisher` 从 `replace-before-publishing` 替换为真实 Marketplace Publisher ID。
+- 确认 Marketplace Publisher ID 为 `towns`。
 - 确认 `repository`、`bugs` 和 `homepage` 指向正式 GitHub 仓库。
-- 补充 Marketplace 图标与主题截图。
+- 补充 Marketplace 图标与主题截图（后续单独处理）。
 - 登录 `vsce`、确认版本号和变更日志后再手动发布。本项目不会自动 publish。
 
 ## 实现说明与限制

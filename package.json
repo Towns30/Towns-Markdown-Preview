@@ -3,7 +3,7 @@
   "displayName": "Towns Markdown Preview",
   "description": "Clean and elegant Markdown preview themes optimized for Chinese and English writing.",
   "version": "0.1.0",
-  "publisher": "replace-before-publishing",
+  "publisher": "towns",
   "license": "MIT",
   "engines": {
     "vscode": "^1.85.0"
@@ -14,6 +14,7 @@
   ],
   "keywords": [
     "markdown",
+    "markdown-preview",
     "preview",
     "theme",
     "chinese",

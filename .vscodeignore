@@ -5,6 +5,7 @@
 src/**
 node_modules/**
 .gitignore
+package-lock.json
 tsconfig.json
 **/*.map
 *.vsix
