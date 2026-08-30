@@ -9,3 +9,4 @@ tsconfig.json
 **/*.map
 *.vsix
 *.vsix.tags
+theme-test.md
