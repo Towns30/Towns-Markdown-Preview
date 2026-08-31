@@ -1,23 +1,23 @@
 :root:has(.towns-theme-cobalt) {
   color-scheme: dark;
   --towns-page-width: 820px;
-  --towns-bg: #1f4e79;
+  --towns-bg: #173d60;
   --towns-text: #f4f7fb;
-  --towns-text-muted: #c8d8e8;
+  --towns-text-muted: #c5d5e4;
   --towns-heading: #f8fafd;
-  --towns-accent: #bfd7ff;
-  --towns-border: rgba(255, 255, 255, 0.14);
-  --towns-soft-bg: rgba(255, 255, 255, 0.08);
-  --towns-code-bg: #173a5c;
-  --towns-code-border: rgba(255, 255, 255, 0.1);
-  --towns-quote-border: #8fb6e8;
-  --towns-selection: rgba(191, 215, 255, 0.28);
+  --towns-accent: #c3daff;
+  --towns-border: rgba(255, 255, 255, 0.15);
+  --towns-soft-bg: rgba(255, 255, 255, 0.09);
+  --towns-code-bg: #102d46;
+  --towns-code-border: rgba(255, 255, 255, 0.12);
+  --towns-quote-border: #91b8ea;
+  --towns-selection: rgba(195, 218, 255, 0.3);
   --towns-mark: rgba(255, 255, 255, 0.15);
   --towns-font-body: var(--towns-font-sans);
   --towns-font-heading: var(--towns-font-sans);
-  --towns-syntax-comment: #a9bdd1;
+  --towns-syntax-comment: #a7bcd0;
   --towns-syntax-keyword: #f8fafd;
-  --towns-syntax-string: #bfd7ff;
+  --towns-syntax-string: #c3daff;
   --towns-syntax-number: #d9e7f5;
   --towns-syntax-title: #ffffff;
 }
@@ -38,7 +38,7 @@ body.vscode-body:has(.towns-theme-cobalt) h1 {
 }
 
 body.vscode-body:has(.towns-theme-cobalt) h2 {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   color: #f8fafd;
   font-size: 1.55em;
 }
@@ -58,14 +58,14 @@ body.vscode-body:has(.towns-theme-cobalt) a:hover {
 body.vscode-body:has(.towns-theme-cobalt) blockquote {
   padding: 0.65em 1em;
   color: #d9e7f5;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 body.vscode-body:has(.towns-theme-cobalt) :not(pre) > code {
-  border-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.12);
   border-radius: 5px;
   color: #ffffff;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.11);
 }
 
 body.vscode-body:has(.towns-theme-cobalt) pre {
@@ -86,26 +86,26 @@ body.vscode-body:has(.towns-theme-cobalt) input[type="checkbox"] {
 }
 
 body.vscode-body:has(.towns-theme-cobalt) input[type="checkbox"]:checked {
-  border-color: #bfd7ff;
-  background: #bfd7ff;
+  border-color: #c3daff;
+  background: #c3daff;
 }
 
 body.vscode-body:has(.towns-theme-cobalt) input[type="checkbox"]:checked::after {
   width: 0.42em;
   height: 0.22em;
-  border-bottom: 2px solid #173a5c;
-  border-left: 2px solid #173a5c;
+  border-bottom: 2px solid #102d46;
+  border-left: 2px solid #102d46;
   content: "";
   transform: translateY(-0.04em) rotate(-45deg);
 }
 
 body.vscode-body:has(.towns-theme-cobalt) th {
   color: #ffffff;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.09);
 }
 
 body.vscode-body:has(.towns-theme-cobalt) tr:nth-child(2n) {
-  background: rgba(255, 255, 255, 0.025);
+  background: rgba(255, 255, 255, 0.03);
 }
 
 body.vscode-body:has(.towns-theme-cobalt) hr {

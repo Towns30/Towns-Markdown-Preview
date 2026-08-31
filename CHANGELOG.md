@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.1
+
+- Refined the Cobalt palette with a deeper background and clearer component contrast.
+
 ## 0.3.0
 
 - Added the new Cobalt theme.
