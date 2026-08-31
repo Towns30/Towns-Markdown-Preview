@@ -2,8 +2,9 @@
   "name": "towns-markdown-preview",
   "displayName": "Towns Markdown Preview",
   "description": "Clean and elegant Markdown preview themes optimized for Chinese and English writing.",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "publisher": "towns",
+  "icon": "images/icon.png",
   "license": "MIT",
   "engines": {
     "vscode": "^1.85.0"

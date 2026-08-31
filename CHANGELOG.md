@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.3
+
+- Added the official Towns Markdown Preview extension icon.
+
 ## 0.1.2
 
 - Fix Markdown preview stylesheet loading after extension upgrades.
