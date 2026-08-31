@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.0
+
+- Added the Sage theme for calm, softly green Markdown previews.
+
 ## 0.1.3
 
 - Added the official Towns Markdown Preview extension icon.

@@ -1,0 +1,55 @@
+:root:has(.towns-theme-sage) {
+  --towns-page-width: 840px;
+  --towns-bg: #e8efe8;
+  --towns-text: #303832;
+  --towns-text-muted: #647067;
+  --towns-heading: #202a23;
+  --towns-accent: #466f59;
+  --towns-border: #c8d7cb;
+  --towns-soft-bg: #dce7de;
+  --towns-code-bg: #d9e5dc;
+  --towns-code-border: #c8d7cb;
+  --towns-quote-border: #7f9b86;
+  --towns-selection: #c8dccd;
+  --towns-mark: #dce5a8;
+  --towns-font-body: var(--towns-font-sans);
+  --towns-font-heading: var(--towns-font-sans);
+  --towns-syntax-comment: #748078;
+  --towns-syntax-keyword: #526a9b;
+  --towns-syntax-string: #6f603f;
+  --towns-syntax-number: #8a633f;
+  --towns-syntax-title: #3f6f55;
+}
+
+body.vscode-body:has(.towns-theme-sage) {
+  line-height: 1.84;
+  letter-spacing: 0.002em;
+}
+
+body.vscode-body:has(.towns-theme-sage) h1 {
+  border-bottom-color: transparent;
+  font-size: 2.14em;
+  letter-spacing: -0.024em;
+}
+
+body.vscode-body:has(.towns-theme-sage) h2 {
+  border-bottom-color: var(--towns-border);
+}
+
+body.vscode-body:has(.towns-theme-sage) a {
+  text-decoration-color: #8ba594;
+}
+
+body.vscode-body:has(.towns-theme-sage) blockquote {
+  padding: 0.65em 1em;
+  color: #536158;
+  background: var(--towns-soft-bg);
+}
+
+body.vscode-body:has(.towns-theme-sage) th {
+  background: var(--towns-soft-bg);
+}
+
+body.vscode-body:has(.towns-theme-sage) tr:nth-child(2n) {
+  background: #edf3ee;
+}

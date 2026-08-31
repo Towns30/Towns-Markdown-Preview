@@ -1,4 +1,4 @@
-export type ThemeId = 'notion' | 'paper' | 'dark';
+export type ThemeId = 'notion' | 'paper' | 'dark' | 'sage';
 
 interface MarkdownToken {
   block: boolean;

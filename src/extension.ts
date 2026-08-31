@@ -31,6 +31,7 @@ const themeItems: ReadonlyArray<vscode.QuickPickItem & { id: ThemeId }> = [
   { id: 'notion', label: 'Notion', description: 'Clean and modern' },
   { id: 'paper', label: 'Paper', description: 'Warm and book-like' },
   { id: 'dark', label: 'Dark', description: 'Restrained dark theme' },
+  { id: 'sage', label: 'Sage', description: 'Calm and softly green' },
 ];
 
 export async function activate(
@@ -99,7 +100,12 @@ function getSelectedTheme(): ThemeId {
 }
 
 function isThemeId(value: string): value is ThemeId {
-  return value === 'notion' || value === 'paper' || value === 'dark';
+  return (
+    value === 'notion' ||
+    value === 'paper' ||
+    value === 'dark' ||
+    value === 'sage'
+  );
 }
 
 async function migrateLegacyMarkdownStyles(): Promise<void> {

@@ -7,6 +7,7 @@
 - **Notion**：简洁的暖白页面，适合笔记和提纲。
 - **Paper**：米白、偏宋体的阅读排版，适合中文长文和书摘。
 - **Dark**：克制的深灰主题，重点优化代码、表格和技术笔记。
+- **Sage**：低饱和鼠尾草绿页面，适合阅读、学习笔记和项目文档。
 
 所有字体均使用系统字体及合理的跨平台 fallback；扩展不包含字体文件。
 
@@ -16,7 +17,7 @@
 
 1. 打开命令面板。
 2. 运行 `Extensions: Install from VSIX...`。
-3. 选择 `towns-markdown-preview-0.1.3.vsix`。
+3. 选择 `towns-markdown-preview-0.2.0.vsix`。
 
 ## 使用
 
@@ -35,7 +36,7 @@
 Towns Markdown: Select Theme
 ```
 
-选择 `Notion`、`Paper` 或 `Dark`。已打开的 Markdown Preview 会立即请求刷新。
+选择 `Notion`、`Paper`、`Dark` 或 `Sage`。已打开的 Markdown Preview 会立即请求刷新。
 
 ## 配置
 
@@ -45,6 +46,7 @@ Towns Markdown: Select Theme
 notion
 paper
 dark
+sage
 ```
 
 默认值为 `notion`。命令面板切换会同步更新该设置。
@@ -76,7 +78,7 @@ npx @vscode/vsce package
 
 本项目没有运行时依赖，`npm run package` 会使用等价的 `--no-dependencies` 选项跳过不必要的依赖扫描。
 
-输出文件为 `towns-markdown-preview-0.1.3.vsix`。
+输出文件为 `towns-markdown-preview-0.2.0.vsix`。
 
 ## Marketplace 发布前
 

@@ -65,3 +65,13 @@ test('wraps rendered Markdown with the selected theme class', () => {
   assert.match(rendered, /<h1>Hello<\/h1>/);
   assert.match(rendered, /<\/div>\n$/);
 });
+
+test('wraps rendered Markdown with the Sage theme class', () => {
+  const markdownIt = new MarkdownIt();
+  addThemeContainer(markdownIt, () => 'sage');
+
+  const rendered = markdownIt.render('# Sage');
+
+  assert.match(rendered, /towns-theme-sage/);
+  assert.match(rendered, /<h1>Sage<\/h1>/);
+});
