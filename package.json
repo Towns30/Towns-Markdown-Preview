@@ -2,7 +2,7 @@
   "name": "towns-markdown-preview",
   "displayName": "Towns Markdown Preview",
   "description": "Clean and elegant Markdown preview themes optimized for Chinese and English writing.",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "publisher": "towns",
   "icon": "images/icon.png",
   "license": "MIT",
@@ -22,7 +22,8 @@
     "notion",
     "paper",
     "dark",
-    "sage"
+    "sage",
+    "cobalt"
   ],
   "main": "./out/extension.js",
   "activationEvents": [
@@ -59,13 +60,15 @@
             "notion",
             "paper",
             "dark",
-            "sage"
+            "sage",
+            "cobalt"
           ],
           "enumDescriptions": [
             "Clean, modern layout for notes and outlines.",
             "Warm, book-like layout for long-form reading.",
             "Restrained dark layout for technical notes.",
-            "Calm sage-green layout for reading and study notes."
+            "Calm sage-green layout for reading and study notes.",
+            "Cobalt-blue layout for long-form reading and technical notes."
           ],
           "default": "notion",
           "scope": "window",
@@ -78,7 +81,8 @@
       "./styles/notion.css",
       "./styles/paper.css",
       "./styles/dark.css",
-      "./styles/sage.css"
+      "./styles/sage.css",
+      "./styles/cobalt.css"
     ],
     "markdown.markdownItPlugins": true
   },

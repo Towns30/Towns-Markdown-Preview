@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.0
+
+- Added the new Cobalt theme.
+- Added a blue-and-white preview style optimized for long-form reading and technical notes.
+
 ## 0.2.0
 
 - Added the Sage theme for calm, softly green Markdown previews.

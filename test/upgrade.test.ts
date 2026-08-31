@@ -75,3 +75,13 @@ test('wraps rendered Markdown with the Sage theme class', () => {
   assert.match(rendered, /towns-theme-sage/);
   assert.match(rendered, /<h1>Sage<\/h1>/);
 });
+
+test('wraps rendered Markdown with the Cobalt theme class', () => {
+  const markdownIt = new MarkdownIt();
+  addThemeContainer(markdownIt, () => 'cobalt');
+
+  const rendered = markdownIt.render('# Cobalt');
+
+  assert.match(rendered, /towns-theme-cobalt/);
+  assert.match(rendered, /<h1>Cobalt<\/h1>/);
+});

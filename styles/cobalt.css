@@ -1,0 +1,134 @@
+:root:has(.towns-theme-cobalt) {
+  color-scheme: dark;
+  --towns-page-width: 820px;
+  --towns-bg: #1f4e79;
+  --towns-text: #f4f7fb;
+  --towns-text-muted: #c8d8e8;
+  --towns-heading: #f8fafd;
+  --towns-accent: #bfd7ff;
+  --towns-border: rgba(255, 255, 255, 0.14);
+  --towns-soft-bg: rgba(255, 255, 255, 0.08);
+  --towns-code-bg: #173a5c;
+  --towns-code-border: rgba(255, 255, 255, 0.1);
+  --towns-quote-border: #8fb6e8;
+  --towns-selection: rgba(191, 215, 255, 0.28);
+  --towns-mark: rgba(255, 255, 255, 0.15);
+  --towns-font-body: var(--towns-font-sans);
+  --towns-font-heading: var(--towns-font-sans);
+  --towns-syntax-comment: #a9bdd1;
+  --towns-syntax-keyword: #f8fafd;
+  --towns-syntax-string: #bfd7ff;
+  --towns-syntax-number: #d9e7f5;
+  --towns-syntax-title: #ffffff;
+}
+
+body.vscode-body:has(.towns-theme-cobalt) {
+  padding: 48px 56px 80px;
+  font-size: 16px;
+  line-height: 1.85;
+  letter-spacing: 0.002em;
+}
+
+body.vscode-body:has(.towns-theme-cobalt) h1 {
+  padding-bottom: 0;
+  border-bottom: 0;
+  color: #ffffff;
+  font-size: 2.2em;
+  letter-spacing: -0.026em;
+}
+
+body.vscode-body:has(.towns-theme-cobalt) h2 {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  color: #f8fafd;
+  font-size: 1.55em;
+}
+
+body.vscode-body:has(.towns-theme-cobalt) h3 {
+  color: #f8fafd;
+}
+
+body.vscode-body:has(.towns-theme-cobalt) strong {
+  color: #ffffff;
+}
+
+body.vscode-body:has(.towns-theme-cobalt) a:hover {
+  color: #d9e7f5;
+}
+
+body.vscode-body:has(.towns-theme-cobalt) blockquote {
+  padding: 0.65em 1em;
+  color: #d9e7f5;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+body.vscode-body:has(.towns-theme-cobalt) :not(pre) > code {
+  border-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+body.vscode-body:has(.towns-theme-cobalt) pre {
+  border-radius: 9px;
+}
+
+body.vscode-body:has(.towns-theme-cobalt) pre code {
+  color: #f4f7fb;
+}
+
+body.vscode-body:has(.towns-theme-cobalt) input[type="checkbox"] {
+  display: inline-grid;
+  place-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 3px;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+body.vscode-body:has(.towns-theme-cobalt) input[type="checkbox"]:checked {
+  border-color: #bfd7ff;
+  background: #bfd7ff;
+}
+
+body.vscode-body:has(.towns-theme-cobalt) input[type="checkbox"]:checked::after {
+  width: 0.42em;
+  height: 0.22em;
+  border-bottom: 2px solid #173a5c;
+  border-left: 2px solid #173a5c;
+  content: "";
+  transform: translateY(-0.04em) rotate(-45deg);
+}
+
+body.vscode-body:has(.towns-theme-cobalt) th {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+body.vscode-body:has(.towns-theme-cobalt) tr:nth-child(2n) {
+  background: rgba(255, 255, 255, 0.025);
+}
+
+body.vscode-body:has(.towns-theme-cobalt) hr {
+  border-top-color: rgba(255, 255, 255, 0.18);
+}
+
+body.vscode-body:has(.towns-theme-cobalt) img {
+  border-radius: 5px;
+  box-shadow: none;
+}
+
+body.vscode-body:has(.towns-theme-cobalt) .katex {
+  color: #f4f7fb;
+}
+
+@media (max-width: 640px) {
+  body.vscode-body:has(.towns-theme-cobalt) {
+    padding: 32px 22px 60px;
+    font-size: 15px;
+  }
+
+  body.vscode-body:has(.towns-theme-cobalt) table {
+    display: table;
+    white-space: normal;
+  }
+}
